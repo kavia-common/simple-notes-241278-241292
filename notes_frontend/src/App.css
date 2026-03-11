@@ -1,104 +1,394 @@
-/* CSS Variables for Theme Management */
 :root {
-  /* Light theme colors */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8f9fa;
-  --text-primary: #282c34;
-  --text-secondary: #61dafb;
-  --border-color: #e9ecef;
-  --button-bg: #007bff;
-  --button-text: #ffffff;
+  /* Base theme */
+  --retro-bg: #212529;
+  --retro-bg-accent: #353740;
+  --retro-card: #E9E3CB;
+  --retro-text: #282623;
+  --retro-text-dim: #726747;
+  --retro-border: #C1BCBB;
+  --retro-accent-1: #C78254;
+  --retro-accent-2: #70A37F;
+  --retro-yellow: #FFF86B;
+  --retro-shadow: #00000033;
 }
-
-[data-theme="dark"] {
-  /* Dark theme colors */
-  --bg-primary: #1a1a1a;
-  --bg-secondary: #282c34;
-  --text-primary: #ffffff;
-  --text-secondary: #61dafb;
-  --border-color: #404040;
-  --button-bg: #0056b3;
-  --button-text: #ffffff;
-}
-
-.App {
-  text-align: center;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
+body, .retro-app {
+  background: var(--retro-bg);
+  color: var(--retro-text);
   min-height: 100vh;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: 'IBM Plex Mono', 'Menlo', 'Monaco', 'Consolas', monospace, 'Inter', Arial, sans-serif;
+  letter-spacing: -0.01em;
+  margin: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.retro-header {
+  width: 100vw;
+  background: var(--retro-bg-accent);
+  border-bottom: 2px solid var(--retro-border);
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 20px 30px 12px 32px;
+  font-family: 'Press Start 2P', 'IBM Plex Mono', 'Consolas', monospace;
+  box-shadow: 0 2px 12px var(--retro-shadow);
+  position: sticky;
+  top: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.title-emoji {
+  font-size: 2.4em;
+}
+.retro-title {
+  font-size: 2em;
+  font-weight: bold;
+  color: var(--retro-yellow);
+  text-shadow: 2px 2px 0 var(--retro-accent-1);
+  margin-right: 10px;
+}
+.retro-subtitle {
+  font-size: 1em;
+  font-weight: 500;
+  color: var(--retro-accent-2);
+  margin-left: auto;
+  opacity: 0.85;
 }
 
-.App-header {
-  background-color: var(--bg-secondary);
-  min-height: 100vh;
+.retro-main {
+  display: flex;
+  height: calc(100vh - 92px);
+}
+
+.retro-sidebar {
+  width: 320px;
+  background: var(--retro-bg-accent);
+  border-right: 2px solid var(--retro-border);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: var(--text-primary);
-  transition: background-color 0.3s ease;
-  position: relative;
+  padding: 0;
+  min-width: 220px;
 }
 
-.App-link {
-  color: var(--text-secondary);
-  transition: color 0.3s ease;
+.sidebar-header {
+  display: flex;
+  flex-direction: column;
+  padding: 18px 20px 14px 20px;
+  gap: 10px;
+  border-bottom: 1px solid var(--retro-border);
 }
 
-.theme-toggle {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background-color: var(--button-bg);
-  color: var(--button-text);
-  border: none;
-  border-radius: 8px;
-  padding: 10px 20px;
-  font-size: 14px;
-  font-weight: 600;
+.sidebar-add-btn {
+  background: var(--retro-accent-1);
+  color: var(--retro-card);
+  border: 2px solid var(--retro-border);
+  padding: 10px 0;
+  font-size: 1em;
+  font-family: inherit;
+  font-weight: 700;
+  border-radius: 6px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 8px;
+  box-shadow: 0 1px 2px var(--retro-shadow);
+  transition: box-shadow 0.1s, opacity 0.2s;
+}
+.sidebar-add-btn:hover {
+  opacity: 0.92;
+  box-shadow: 0 2px 10px var(--retro-shadow);
 }
 
-.theme-toggle:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  opacity: 0.9;
+.sidebar-search {
+  border: 1.5px solid var(--retro-border);
+  background: var(--retro-card);
+  color: var(--retro-text);
+  border-radius: 6px;
+  padding: 7px 12px;
+  font-size: 1em;
+  outline: none;
+  margin: 0;
+  width: 100%;
+  margin-bottom: 6px;
+}
+.sidebar-search:focus {
+  border-color: var(--retro-accent-2);
+  box-shadow: 0 0 0 2px var(--retro-yellow)33;
 }
 
-.theme-toggle:active {
-  transform: translateY(0);
+.note-list {
+  margin: 0;
+  padding: 0 0 16px 0;
+  list-style: none;
+  flex: 1 1 0%;
+  overflow-y: auto;
+  background: var(--retro-bg-accent);
+}
+.note-list-empty {
+  color: var(--retro-text-dim);
+  text-align: center;
+  margin: 24px 0 0 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.note-list-item {
+  background: var(--retro-card);
+  color: var(--retro-text);
+  border-bottom: 1px solid var(--retro-border);
+  cursor: pointer;
+  padding: 14px 16px 10px 16px;
+  margin: 0;
+  transition: background 0.17s;
+  position: relative;
+  word-break: break-word;
+  box-shadow: 0 1px 9px -5px var(--retro-shadow);
+  font-size: 1em;
+}
+.note-list-item.selected,
+.note-list-item:hover {
+  background: var(--retro-yellow);
+}
+.note-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+.note-title {
+  flex: 1;
+  padding-right: 12px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 1.04em;
+}
+.note-del-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #b33c2b;
+  font-size: 1.23em;
+  margin-right: -4px;
+  margin-left: 6px;
+  padding: 2px 3px 1px 2px;
+  border-radius: 5px;
+  opacity: 0.75;
+  transition: background 0.15s, opacity 0.18s;
+}
+.note-del-btn:hover {
+  background: #ffe3cf;
+  opacity: 1;
+}
+.note-snippet, .note-meta {
+  font-size: 0.97em;
+  color: var(--retro-text-dim);
+  margin-top: 2px;
+  word-break: break-all;
+}
+.note-meta {
+  font-size: 0.82em;
+  margin-top: 2px;
+}
+
+.retro-editor {
+  flex: 1 1 0%;
+  background: var(--retro-bg);
+  min-width: 243px;
+  padding: 36px 20px 32px 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  box-shadow: 0 0 0 0 var(--retro-shadow);
+}
+.editor-empty {
+  margin: 40px auto;
+  text-align: center;
+  color: var(--retro-text-dim);
+  font-size: 1.2em;
+}
+.editor-form, .editor-readonly {
+  background: var(--retro-card);
+  border-radius: 7px;
+  box-shadow: 0 0 20px var(--retro-shadow);
+  padding: 28px 28px 21px 28px;
+  min-width: 0;
+  margin: 0 auto 0 auto;
+  max-width: 680px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.editor-title,
+.editor-readonly-title {
+  font-size: 1.3em;
+  font-weight: 700;
+  margin-bottom: 11px;
+  border: none;
+  background: var(--retro-card);
+  color: var(--retro-text);
+  outline: none;
+}
+.editor-title {
+  border-bottom: 1.2px dashed var(--retro-border);
+  padding-bottom: 6px;
+  margin-bottom: 15px;
+  border-radius: 4px 4px 0 0;
+}
+.editor-title:focus {
+  background: #fffbc9;
+}
+.editor-body {
+  font-size: 1.06em;
+  font-family: inherit;
+  background: var(--retro-card);
+  border: 1.5px solid var(--retro-border);
+  resize: vertical;
+  border-radius: 7px;
+  min-height: 120px;
+  max-height: 320px;
+  margin-bottom: 15px;
+  padding: 10px;
+  color: var(--retro-text);
+  transition: border 0.13s;
+}
+.editor-body:focus {
+  border-color: var(--retro-accent-2);
+  background: #fffbc9;
+}
+.editor-actions {
+  display: flex;
+  gap: 15px;
+}
+.editor-save-btn,
+.editor-cancel-btn,
+.editor-edit-btn {
+  padding: 9px 28px;
+  border-radius: 7px;
+  font-size: 1.01em;
+  font-family: inherit;
+  font-weight: bold;
+  cursor: pointer;
+  border: 1.6px solid var(--retro-border);
+  box-shadow: 0 2px 9px -5px var(--retro-shadow);
+  transition: background 0.13s, color 0.13s;
+}
+.editor-save-btn {
+  background: var(--retro-accent-1);
+  color: var(--retro-card);
+  border-color: var(--retro-accent-1);
+}
+.editor-cancel-btn {
+  background: var(--retro-bg-accent);
+  color: var(--retro-text-dim);
+}
+
+.editor-edit-btn {
+  background: var(--retro-accent-2);
+  color: var(--retro-card);
+  border-color: var(--retro-accent-2);
+  margin-left: auto;
+  margin-bottom: 8px;
+  padding: 8px 21px;
+  font-size: 0.98em;
+}
+.editor-readonly-body {
+  white-space: pre-line;
+  font-size: 1.09em;
+  color: var(--retro-text);
+  padding-bottom: 7px;
+}
+
+.editor-readonly-meta {
+  color: var(--retro-text-dim);
+  font-size: 0.88em;
+  margin-top: 7px;
+}
+.editor-title-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 9px;
+}
+
+.retro-footer {
+  width: 100vw;
+  min-height: 36px;
+  background: var(--retro-bg-accent);
+  border-top: 2px solid var(--retro-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.99em;
+  color: var(--retro-text-dim);
+  padding: 12px 30px 8px 30px;
+  font-family: 'IBM Plex Mono', 'Consolas', monospace, Arial, sans-serif;
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
+}
+.footer-left {
+  letter-spacing: 1px;
+}
+.footer-right a {
+  color: var(--retro-accent-1);
+  text-decoration: none;
+  transition: color 0.14s;
+}
+.footer-right a:hover {
+  color: var(--retro-yellow);
+}
+
+/* Scrollbars for retro look */
+.note-list,
+.retro-sidebar,
+.retro-editor textarea {
+  scrollbar-width: thin;
+  scrollbar-color: var(--retro-border) var(--retro-bg-accent);
+}
+.note-list::-webkit-scrollbar,
+.retro-sidebar::-webkit-scrollbar,
+.retro-editor textarea::-webkit-scrollbar {
+  width: 7px;
+  background: var(--retro-bg-accent);
+}
+.note-list::-webkit-scrollbar-thumb,
+.retro-sidebar::-webkit-scrollbar-thumb,
+.retro-editor textarea::-webkit-scrollbar-thumb {
+  background: var(--retro-border);
+  border-radius: 8px;
+}
+
+/* Responsive design */
+@media (max-width: 900px) {
+  .retro-main {
+    flex-direction: column;
+    height: auto;
+    min-height: 0;
   }
-  to {
-    transform: rotate(360deg);
+  .retro-sidebar {
+    width: 100vw;
+    border-right: none;
+    border-bottom: 2px solid var(--retro-border);
+    min-width: 0;
+    flex: none;
+  }
+  .retro-editor {
+    padding: 28px 4vw 19px 4vw;
+    min-width: 0;
   }
 }
 
-/* Responsive design for mobile */
-@media (max-width: 768px) {
-  .theme-toggle {
-    top: 10px;
-    right: 10px;
-    padding: 8px 16px;
-    font-size: 12px;
+@media (max-width: 640px) {
+  .retro-main {
+    flex-direction: column;
+  }
+  .retro-sidebar {
+    width: 100vw;
+  }
+  .retro-editor,
+  .editor-form,
+  .editor-readonly {
+    padding: 10vw 2vw;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+  .retro-header,
+  .retro-footer {
+    padding-left: 6vw;
+    padding-right: 6vw;
   }
 }
